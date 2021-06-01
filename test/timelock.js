@@ -5,7 +5,7 @@ const MockToken = artifacts.require('MockToken.sol');
 
 contract('Timelock', async accounts => {
     let timelock, token;
-    const [_, owner, otherAddress, _] = accounts; 
+    const [deployer, owner, otherAddress, _] = accounts; 
 
     before(async () => {
         timelock = await Timelock.new(owner);
@@ -14,8 +14,8 @@ contract('Timelock', async accounts => {
 
     it('Should perform timelock and release on MockToken and ETther', async () => {
         let contractEtherBalance, contractTokenBalance, ownerTokenBalance;
-        const etherTotal = web3.utils.toWei('10');
-        const tokenTotal = web3.utils.toWei('10');
+        const etherTotal = web3.utils.toWei('1');
+        const tokenTotal = web3.utils.toWei('1');
 
         await web3.eth.sendTransaction({
             from: owner,
