@@ -5,12 +5,13 @@ import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 
 contract Timelock {
     uint public immutable expiry;
-    uint public constant length = 365 days;
+    uint public constant length;
     
     address payable public immutable owner;
 
-    constructor(address payable _owner) {
-        expiry = block.timestamp + length;
+    constructor(address payable _owner, _length) {
+        length = _length;
+        expiry = block.timestamp + _length;
         owner = _owner;
     }
 
